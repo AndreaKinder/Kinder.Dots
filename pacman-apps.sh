@@ -1,0 +1,1 @@
+sudo pacman -S qtile vivaldi wget dropbox openssh qbittorrent evolution discord telegram-desktop feh rhythmbox vlc calibre udiskie thunar neovim code arandr xorg-xrandr kdeconnect network-manager-applet  pulseaudio ntfs-3g rofi alacritty 

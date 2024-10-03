@@ -1,0 +1,6 @@
+[submodule "Kinder.Rofi"]
+	path = Kinder.Rofi
+	url = https://github.com/AndreaKinder/Kinder.Rofi.git
+[submodule "Kinder.Qtile"]
+	path = Kinder.Qtile
+	url = https://github.com/AndreaKinder/Kinder.Qtile.git
