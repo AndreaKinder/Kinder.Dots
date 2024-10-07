@@ -4,3 +4,6 @@
 [submodule "Kinder.Qtile"]
 	path = Kinder.Qtile
 	url = https://github.com/AndreaKinder/Kinder.Qtile.git
+[submodule "Kinder.Vim"]
+	path = Kinder.Vim
+	url = https://github.com/AndreaKinder/Kinder.Vim.git
