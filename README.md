@@ -22,14 +22,14 @@ Este repositorio contiene mi configuración personalizada de Arch Linux, diseña
 ## **Capturas de Pantalla:**
 
 ### Configuración de escritorio 1:
-![Screen 1](.img\screeenshots\Screen1.png)
+![Screen 1](.img/screeenshots/Screen1.png)
 ### Configuración de escritorio 2:
-![Screen2](.img\screeenshots\Sreen2.png)
+![Screen2](.img/screeenshots/Sreen2.png)
 ## Fondos de Pantalla Personalizados:
 ### Configuración de escritorio 1:
-![Wallpaper 1](.img\wallpapers\Wallpaper1.jpg)
+![Wallpaper 1](.img/wallpapers/Wallpaper1.jpg)
 ### Configuración de escritorio 2:
-![Wallpaper 2](.img\wallpapers\Wallpaper2.png)
+![Wallpaper 2](.img/wallpapers/Wallpaper2.png)
 ## **Atajos de Teclado de Qtile:**
 
 Los atajos de teclado en Qtile son fundamentales para una navegación eficiente. A continuación, se presentan los atajos de teclado más importantes para Qtile:
