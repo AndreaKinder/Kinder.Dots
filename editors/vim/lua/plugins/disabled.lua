@@ -27,4 +27,7 @@ return {
     "NickvanDyke/opencode.nvim",
     enabled = false,
   },
+  { "pablopunk/pi.nvim", enabled = false },
+  { "andreakinder/pi-togle.nvim", enabled = false },
+  { "marcinjahn/gemini-cli.nvim", enabled = false },
 }
