@@ -48,3 +48,7 @@ if [ -n "$(ls -A "$DOTFILES_PATH/shell/bash/completions/")" ]; then
     source "$bash_file"
   done
 fi
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/andrea/.local/bin:$PATH"
