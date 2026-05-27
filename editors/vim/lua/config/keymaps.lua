@@ -26,8 +26,6 @@ vim.keymap.set("n", "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext) -- Navigate
 require("which-key").add({
   { "<leader>a", group = "IA" },
 })
--- Ask pi with the current buffer as context
-vim.keymap.set("n", "<leader>ai", ":PiAsk<CR>", { desc = "Ask pi" })
 
 ---Obsidian---
 require("config.configs.obsidian-keymaps")
