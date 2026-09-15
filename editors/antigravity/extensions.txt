@@ -1,0 +1,15 @@
+golang.go
+llvm-vs-code-extensions.vscode-clangd
+meta.pyrefly
+ms-azuretools.vscode-containers
+ms-azuretools.vscode-docker
+ms-python.debugpy
+ms-python.python
+ms-python.vscode-python-envs
+ms-toolsai.jupyter
+ms-toolsai.jupyter-keymap
+ms-toolsai.jupyter-renderers
+ms-toolsai.vscode-jupyter-cell-tags
+ms-toolsai.vscode-jupyter-slideshow
+shopify.ruby-lsp
+vue.volar

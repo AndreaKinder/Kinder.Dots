@@ -20,14 +20,11 @@ return {
     enabled = false,
   },
   {
-    "coder/claudecode.nvim",
-    enabled = false,
-  },
-  {
     "NickvanDyke/opencode.nvim",
     enabled = false,
   },
   { "pablopunk/pi.nvim", enabled = false },
   { "andreakinder/pi-togle.nvim", enabled = false },
   { "marcinjahn/gemini-cli.nvim", enabled = false },
+  { "nvim-neorg/neorg", enabled = false },
 }

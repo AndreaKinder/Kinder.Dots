@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "engram": {
+      "command": "ssh",
+      "args": ["pi", "/home/andrea/.local/bin/engram", "mcp"]
+    }
+  }
+}

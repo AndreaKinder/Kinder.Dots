@@ -26,5 +26,9 @@ alias gl='$DOTLY_PATH/bin/dot git pretty-log'
 alias k='kill -9'
 alias i.='(idea $PWD &>/dev/null &)'
 alias c.='(code $PWD &>/dev/null &)'
-alias o.='open .'
+if [ "$(uname)" = "Darwin" ]; then
+  alias o.='open .'
+else
+  alias o.='xdg-open .'
+fi
 alias up='dot package update_all'

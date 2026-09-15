@@ -1,2 +1,57 @@
-# Local Pi runtime state
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.env
+*.pem
+*.key
+*.cert
+*.crt
+id_rsa
+id_ed25519
+.secrets
+.credentials
+secrets.*
+credentials.*
+auth.json
+
+# Local Pi / Antigravity runtime state
 .atl/
+.antigravitycli/
+editors/vim/lua/plugins/pi-togle.nvim/
+
+# OS and Editor caches
+.DS_Store
+*.log
+
+# Node dependencies
+node_modules/
+raycast/**/node_modules/
+
+# Compiled OS binaries in bin/ (should not be in git)
+bin/bash
+bin/date
+bin/find
+bin/make
+bin/npx
+bin/sed
+bin/touch
+bin/zsh
+
+# Sensitive / Private documents and personal vault notes
+doc/.obsidian/
+doc/*.pdf
+doc/neo-notes/
+doc/notes/
+doc/journal/
+doc/templates/
+doc/zettelkasten/
+
+# Private client & work references
+*goalmed*
+*Goalmed*
+*GOALMED*
+*goalup*
+*Goalup*
+*GOALUP*
+

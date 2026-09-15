@@ -32,5 +32,7 @@ kinder_greeting
 
 
 # Added by Antigravity CLI installer
-export PATH="/Users/andrea/.local/bin:$PATH"
-export PATH="/Users/andrea/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"

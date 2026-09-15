@@ -6,6 +6,7 @@ export CODELY_THEME_MODE="dark"
 export CODELY_THEME_PROMPT_IN_NEW_LINE=false
 export CODELY_THEME_PWD_MODE="short"
 
+export OLLAMA_HOST="${OLLAMA_HOST:-127.0.0.1}"
 # ------------------------------------------------------------------------------
 # Kinder theme config
 # ------------------------------------------------------------------------------
@@ -14,7 +15,9 @@ export LOGO="$DOTFILES_PATH/assets/logo"
 # ------------------------------------------------------------------------------
 # Languages
 # ------------------------------------------------------------------------------
-export JAVA_HOME='/Library/Java/JavaVirtualMachines/amazon-corretto-15.jdk/Contents/Home'
+if [ -d '/Library/Java/JavaVirtualMachines/amazon-corretto-15.jdk/Contents/Home' ]; then
+  export JAVA_HOME='/Library/Java/JavaVirtualMachines/amazon-corretto-15.jdk/Contents/Home'
+fi
 export GEM_HOME="$HOME/.gem"
 export GOPATH="$HOME/.go"
 
@@ -40,6 +43,8 @@ path=(
   "$GEM_HOME/bin"
   "$GOPATH/bin"
   "$HOME/.cargo/bin"
+  "/home/linuxbrew/.linuxbrew/bin"
+  "/home/linuxbrew/.linuxbrew/sbin"
   "/usr/local/opt/ruby/bin"
   "/usr/local/opt/python/libexec/bin"
   "/opt/homebrew/bin"

@@ -1,4 +1,4 @@
-export DOTFILES_PATH="/Users/andrea/.dotfiles"
+export DOTFILES_PATH="${DOTFILES_PATH:-$HOME/.dotfiles}"
 export DOTLY_PATH="$DOTFILES_PATH/modules/dotly"
 export DOTLY_THEME="codely"
 
@@ -51,4 +51,4 @@ fi
 
 
 # Added by Antigravity CLI installer
-export PATH="/Users/andrea/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"

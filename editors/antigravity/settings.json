@@ -1,0 +1,4 @@
+{
+  "security.promptForLocalFileProtocolHandling": false,
+  "git.autofetch": true
+}
