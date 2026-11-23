@@ -21,7 +21,7 @@ Index and guardrails for managing the Niri + DMS desktop environment in `$DOTFIL
 2. **NEVER replace `greetd` + `tuigreet`**:
    - `/etc/greetd/config.toml` (`$DOTFILES_PATH/os/linux/greetd/config.toml`) runs `tuigreet --time --remember --cmd niri-session`. Do **not** install, enable, or switch to `dms-greeter` or alter `tuigreet`.
 3. **Preserve Niri hardware & personal rules** in `~/.config/niri/config.kdl`:
-   - Keep Spanish keyboard (`es`), touchscreen (`eDP-1`), `squeekboard`, `tablet-mode-on/off`, Omarchy/DMS + `Mod+Shift+Arrow` + `Mod+C`/`X`/`V` + `Alt+Space` + `Mod+WheelScroll*` binds, `active-color "#ffffff"`, borderless `com.mitchellh.ghostty` / `(?i)^ffpwa-`, and fullscreen Steam Big Picture / `^steam_app_\d+$` / `gamescope`.
+   - Keep Spanish keyboard (`es`), touchscreen (`eDP-1`), `squeekboard`, `tablet-mode-on/off`, Omarchy/DMS + `Mod+Return`/`Mod+B`/`Mod+W`/`Mod+H`/`Mod+E`/`Mod+D` + `Mod+Shift+Arrow` + `Mod+C`/`X`/`V` + `Alt+Space` + `Mod+WheelScroll*` binds, `active-color "#ffffff"`, borderless `com.mitchellh.ghostty` / `(?i)^ffpwa-` / `^chrome-`, and fullscreen Steam Big Picture / `^steam_app_\d+$` / `gamescope`.
 4. **Lock screen wallpaper awareness**:
    - DMS's lock screen falls back to `SessionData.wallpaperPath` unless `lockScreenWallpaperPath` is set in `~/.config/dms/settings.json`. Mention this when changing the desktop wallpaper.
 

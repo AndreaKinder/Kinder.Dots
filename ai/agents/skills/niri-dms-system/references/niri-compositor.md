@@ -15,8 +15,8 @@ Reference for Niri Wayland compositor (`niri 26.04`) configuration, window rules
 In `~/.config/niri/config.kdl` (`$DOTFILES_PATH/os/linux/niri/config.kdl`), always preserve:
 
 - **Input & Tablet**: Spanish keyboard layout (`es`), touchscreen mapping (`eDP-1`), `squeekboard`, `tablet-mode-on/off` switch events.
-- **Keybinds**: Omarchy/DMS keybinds, `Mod+B` (Ardia browser), `Mod+Return` (Ghostty), `Mod+Shift+Left/Right/Down/Up` window/column move binds, `Mod+C`/`Mod+X`/`Mod+V` (`niri-clipboard`), `Alt+Space` (`voxtype record toggle`), `Mod+WheelScroll*` vertical/horizontal wheel binds.
-- **Layout & Window Rules**: `active-color "#ffffff"` layout border, borderless `window-rule`s for `com.mitchellh.ghostty` and FirefoxPWA (`(?i)^ffpwa-`), and fullscreen `window-rule` (`open-fullscreen true`) for Steam Big Picture (`^steam$` + `(?i)big picture`), Steam games (`^steam_app_\d+$`), and `gamescope`.
+- **Keybinds**: Omarchy/DMS keybinds, `Mod+Return` (Ghostty), `Mod+B` (Ardia browser `/usr/bin/ardia`), `Mod+W` (WhatsApp FirefoxPWA), `Mod+H` (Hey Mail FirefoxPWA), `Mod+E` (Nautilus file manager), `Mod+Space` (DMS Spotlight), `Mod+D` (DMS Dash `dms ipc call dash toggle ""`), `Mod+Shift+Left/Right/Down/Up` window/column move binds, `Mod+C`/`Mod+X`/`Mod+V` (`niri-clipboard`), `Alt+Space` (`voxtype record toggle`), `Mod+WheelScroll*` vertical/horizontal wheel binds.
+- **Layout & Window Rules**: `active-color "#ffffff"` layout border, borderless `window-rule`s for `com.mitchellh.ghostty`, FirefoxPWA (`(?i)^ffpwa-`), and Ardia standalone web apps (`^chrome-`, e.g. Google Maps), and fullscreen `window-rule` (`open-fullscreen true`) for Steam Big Picture (`^steam$` + `(?i)big picture`), Steam games (`^steam_app_\d+$`), and `gamescope`.
 
 ## Procedure: Editing Niri Layout, Rules, or Helpers
 

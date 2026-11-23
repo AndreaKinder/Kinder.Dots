@@ -18,6 +18,8 @@ This repository (`$HOME/.dotfiles`) uses **dotly** to manage shell configuration
 2. **Niri (`os/linux/niri/`)**:
    - Symlinked directly to `~/.config/niri`.
    - Includes `config.kdl`, the `dms/` integration folder, and the C source for `niri-clipboard`.
+   - Keybinds: `Mod+Return` (Ghostty), `Mod+B` (Ardia Browser `/usr/bin/ardia`), `Mod+W` (WhatsApp FirefoxPWA), `Mod+H` (Hey Mail FirefoxPWA), `Mod+E` (Archivos / Nautilus), `Mod+Space` (Spotlight toggle), `Mod+D` (DMS Dash toggle), `Alt+Space` (Voxtype), `Mod+C`/`Mod+X`/`Mod+V` (niri-clipboard), and Omarchy navigation/move binds.
+   - Window rules: borderless for `(?i)^ffpwa-` (FirefoxPWA web apps) and `^chrome-` (Ardia `--app` web apps such as Google Maps).
    - Helper binaries `niri-clipboard` and `niri-touch-gestures` live in `$DOTFILES_PATH/bin/` (in `$PATH` and symlinked to `~/.local/bin/`).
 
 3. **Dux Modular Shell (`os/linux/dms/`) & Branding (`os/linux/branding/`)**:

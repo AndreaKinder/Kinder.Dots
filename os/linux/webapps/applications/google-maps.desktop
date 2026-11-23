@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.4
+Name=Google Maps
+Comment=Llega adonde quieras más rápido
+Keywords=Google;Maps;Mapas;Navegación;Rutas;GPS;
+Categories=Network;Geography;
+Icon=google-maps
+Exec=/usr/bin/ardia --app=https://www.google.com/maps
+Terminal=false
+StartupNotify=true
+StartupWMClass=chrome-www.google.com__maps-Default

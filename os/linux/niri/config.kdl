@@ -111,9 +111,10 @@ window-rule {
     draw-border-with-background false
 }
 
-// Sin bordes ni focus-ring para web apps de FirefoxPWA (ej. WhatsApp)
+// Sin bordes ni focus-ring para web apps (FirefoxPWA y Ardia --app, ej. WhatsApp, Google Maps)
 window-rule {
     match app-id=r#"(?i)^ffpwa-"#
+    match app-id=r#"^chrome-"#
     focus-ring {
         off
     }
@@ -135,16 +136,17 @@ window-rule {
 binds {
     // Aplicaciones principales
     Mod+Return { spawn "ghostty"; }
-    Mod+B { spawn "ardia"; }
+    Mod+B { spawn "/usr/bin/ardia"; }
     Mod+W { spawn "firefoxpwa" "site" "launch" "01M7SHF20HH1SQ5DAMZ8HM0YB9"; } // Abre WhatsApp Web App (FirefoxPWA)
-    Mod+E { spawn "dms" "files"; } // Abre Dux Files
+    Mod+H { spawn "firefoxpwa" "site" "launch" "01M7Y10CWF0X27PJ6RNVS9M5YQ"; } // Abre Hey Mail (FirefoxPWA)
+    Mod+E { spawn "nautilus"; } // Abre el explorador de archivos (Archivos / Nautilus)
 
     // Dictado por voz (Voxtype)
     Alt+Space { spawn "voxtype" "record" "toggle"; }
 
     // Controles de Dux Shell (Lanzador, Dash, Control Center, Bloqueo)
     Mod+Space { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
-    Mod+D { spawn "dms" "ipc" "call" "dash" "toggle"; }
+    Mod+D { spawn "dms" "ipc" "call" "dash" "toggle" ""; }
     Mod+N { spawn "dms" "ipc" "call" "notifications" "toggle"; }
     Mod+Shift+C { spawn "dms" "ipc" "call" "control-center" "toggle"; }
     Mod+Escape { spawn "dms" "ipc" "call" "lock" "lock"; }
@@ -162,8 +164,8 @@ binds {
     Mod+R { switch-preset-column-width; }
     Mod+O { toggle-overview; }
 
-    // Navegación estilo Vim (HJKL) y flechas por la cinta de Niri
-    Mod+H { focus-column-left; }
+    // Navegación por la cinta de Niri (HJKL / Flechas; Mod+H reasignado a Hey Mail)
+    // Mod+H { focus-column-left; }
     Mod+L { focus-column-right; }
     Mod+J { focus-window-down; }
     Mod+K { focus-window-up; }

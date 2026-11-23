@@ -66,11 +66,15 @@ Running `dot symlinks apply` executes Dotbot sequentially against:
        ~/.config/user-dirs.dirs: os/linux/xdg/user-dirs.dirs
        ~/.config/user-dirs.locale: os/linux/xdg/user-dirs.locale
        ~/.config/systemd/user/niri-touch-gestures.service: os/linux/systemd/user/niri-touch-gestures.service
+       ~/.config/dms/plugins/heyMail: os/linux/dms/plugins/heyMail
        ~/.local/share/firefoxpwa/config.json: os/linux/firefoxpwa/config.json
        ~/.local/share/firefoxpwa/profiles/00000000000000000000000000/user.js: os/linux/firefoxpwa/user.js
        ~/.local/share/firefoxpwa/profiles/00000000000000000000000000/chrome/userChrome.css: os/linux/firefoxpwa/chrome/userChrome.css
        ~/.local/share/applications/FFPWA-01M7SHF20HH1SQ5DAMZ8HM0YB9.desktop: os/linux/firefoxpwa/applications/FFPWA-01M7SHF20HH1SQ5DAMZ8HM0YB9.desktop
        ~/.local/share/applications/FFPWA-01M7Y10CWF0X27PJ6RNVS9M5YQ.desktop: os/linux/firefoxpwa/applications/FFPWA-01M7Y10CWF0X27PJ6RNVS9M5YQ.desktop
+       ~/.local/share/applications/google-maps.desktop: os/linux/webapps/applications/google-maps.desktop
+       ~/.local/share/icons/hicolor/192x192/apps/google-maps.png: os/linux/webapps/icons/hicolor/192x192/apps/google-maps.png
+       ~/.local/share/icons/hicolor/512x512/apps/google-maps.png: os/linux/webapps/icons/hicolor/512x512/apps/google-maps.png
        ~/.local/bin/niri-clipboard: bin/niri-clipboard
        ~/.local/bin/niri-touch-gestures: bin/niri-touch-gestures
        ~/.local/src/niri-clipboard/niri-clipboard.c: os/linux/niri/src/niri-clipboard/niri-clipboard.c
