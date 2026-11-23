@@ -1,0 +1,19 @@
+{
+  "lockfileVersion": 1,
+  "plugins": {
+    "dankClight": {
+      "repo": "https://github.com/duxlabs-dev/dux-plugins",
+      "path": "DankClight",
+      "commit": "2a1d1e802d4d3730484b0040a3cee6dd836ba2b4"
+    },
+    "dankscale": {
+      "repo": "https://github.com/dwright134/dms-dankscale",
+      "commit": "fb21277e45a2c77eeb53de48a2008f07ea6892aa"
+    },
+    "openRouter": {
+      "repo": "https://github.com/agneswd/dms-openrouter-widget",
+      "path": "openRouter",
+      "commit": "local"
+    }
+  }
+}

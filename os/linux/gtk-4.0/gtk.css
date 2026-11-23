@@ -1,0 +1,62 @@
+/* Estética TUI (tuigreet) para GTK 4 / libadwaita */
+@define-color window_bg_color #000000;
+@define-color window_fg_color #e6e6e6;
+@define-color view_bg_color #000000;
+@define-color view_fg_color #e6e6e6;
+@define-color headerbar_bg_color #080808;
+@define-color headerbar_fg_color #e6e6e6;
+@define-color headerbar_border_color #444444;
+@define-color headerbar_backdrop_color #000000;
+@define-color headerbar_shade_color rgba(0, 0, 0, 0);
+@define-color card_bg_color #0c0c0c;
+@define-color card_fg_color #e6e6e6;
+@define-color card_shade_color rgba(0, 0, 0, 0);
+@define-color dialog_bg_color #080808;
+@define-color dialog_fg_color #e6e6e6;
+@define-color popover_bg_color #080808;
+@define-color popover_fg_color #e6e6e6;
+@define-color sidebar_bg_color #050505;
+@define-color sidebar_fg_color #e6e6e6;
+@define-color sidebar_backdrop_color #000000;
+@define-color sidebar_shade_color rgba(0, 0, 0, 0);
+@define-color accent_bg_color #ffffff;
+@define-color accent_fg_color #000000;
+@define-color accent_color #ffffff;
+@define-color destructive_bg_color #e06c75;
+@define-color destructive_fg_color #000000;
+@define-color destructive_color #e06c75;
+@define-color success_bg_color #98c379;
+@define-color success_fg_color #000000;
+@define-color success_color #98c379;
+@define-color warning_bg_color #e5c07b;
+@define-color warning_fg_color #000000;
+@define-color warning_color #e5c07b;
+@define-color error_bg_color #e06c75;
+@define-color error_fg_color #000000;
+@define-color error_color #e06c75;
+
+window,
+headerbar,
+popover,
+popover > contents,
+dialog,
+button,
+entry,
+card,
+.card,
+.boxed-list,
+.boxed-list > row,
+list,
+row {
+  border-radius: 0px;
+}
+
+popover > contents {
+  border: 1px solid #666666;
+  box-shadow: none;
+}
+
+headerbar {
+  border-bottom: 1px solid #444444;
+  box-shadow: none;
+}

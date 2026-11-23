@@ -1,0 +1,31 @@
+# Common
+# ----------------------------------
+shell/zsh/.zim
+
+shell/zsh/**/**.zwc
+shell/zsh/**/**.zwc.old
+
+# Secrets & local overrides
+# ----------------------------------
+.env
+.env.*
+!.env.example
+*.local
+git/.gitconfig.local
+
+# Python caches
+# ----------------------------------
+__pycache__/
+*.py[cod]
+
+# Machine-specific / personal configs
+# ----------------------------------
+os/linux/dms/plugin_settings.json
+os/linux/niri/dms/outputs.kdl
+os/linux/systemd/user/voxtype.service.d/gpu.conf
+os/linux/udev/rules.d/70-raydium-touchscreen.rules
+os/linux/cachyos/cachyos-hello.json
+os/linux/xdg/user-dirs.dirs
+os/linux/xdg/user-dirs.locale
+os/linux/firefoxpwa/config.json
+os/linux/firefoxpwa/applications/*.desktop

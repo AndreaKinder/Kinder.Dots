@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source "$DOTLY_PATH/scripts/core/_main.sh"
+
+##? Bootstrap the base Arch/CachyOS Niri + Dux Shell (DMS) + Ghostty + Neovim system
+##?
+##? Usage:
+##?    bootstrap [--apply-symlinks]
+docs::parse "$@"
+
+output::header "Bootstrapping Niri System Environment"
+
+bootstrap_script="$DOTFILES_PATH/restoration_scripts/01-niri-system-bootstrap.sh"
+
+if [ ! -f "$bootstrap_script" ]; then
+	die "Restoration script not found at $bootstrap_script"
+fi
+
+source "$bootstrap_script"
+
+if [ "${apply_symlinks:-false}" = "true" ]; then
+	output::header "Applying dotfiles symlinks"
+	"$DOTLY_PATH/bin/dot" symlinks apply
+fi
+
+log::success "System bootstrap finished!"

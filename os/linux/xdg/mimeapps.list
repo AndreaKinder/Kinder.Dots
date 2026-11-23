@@ -1,0 +1,16 @@
+[Default Applications]
+text/html=ardia.desktop
+application/xhtml+xml=ardia.desktop
+x-scheme-handler/http=ardia.desktop
+x-scheme-handler/https=ardia.desktop
+x-scheme-handler/about=ardia.desktop
+x-scheme-handler/unknown=ardia.desktop
+x-scheme-handler/mailto=ardia.desktop
+
+[Added Associations]
+text/html=ardia.desktop;
+application/xhtml+xml=ardia.desktop;
+x-scheme-handler/http=ardia.desktop;
+x-scheme-handler/https=ardia.desktop;
+x-scheme-handler/about=ardia.desktop;
+x-scheme-handler/unknown=ardia.desktop;

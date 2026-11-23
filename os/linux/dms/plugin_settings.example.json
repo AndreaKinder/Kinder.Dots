@@ -1,0 +1,19 @@
+{
+  "dankscale": {
+    "enabled": false
+  },
+  "heyMail": {
+    "enabled": false
+  },
+  "dankClight": {
+    "enabled": false
+  },
+  "openRouter": {
+    "enabled": false,
+    "apiKey": "",
+    "pollSeconds": "300",
+    "showCredits": true,
+    "showModels": true,
+    "showCostPerToken": true
+  }
+}

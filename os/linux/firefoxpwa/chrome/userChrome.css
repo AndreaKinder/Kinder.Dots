@@ -1,0 +1,20 @@
+/* Hide FirefoxPWA top titlebar / icon bar completely (tiling WM / Niri) */
+#titlebar,
+#TabsToolbar,
+#toolbar-menubar,
+#PersonalToolbar {
+  visibility: collapse !important;
+  display: none !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  height: 0 !important;
+}
+
+#navigator-toolbox {
+  border-bottom: none !important;
+}
+
+:root,
+body {
+  border-radius: 0 !important;
+}

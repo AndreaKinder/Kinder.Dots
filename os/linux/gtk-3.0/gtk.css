@@ -1,0 +1,49 @@
+/* Estética TUI (tuigreet) para GTK 3 */
+@define-color theme_bg_color #000000;
+@define-color theme_fg_color #e6e6e6;
+@define-color theme_base_color #000000;
+@define-color theme_text_color #e6e6e6;
+@define-color theme_selected_bg_color #ffffff;
+@define-color theme_selected_fg_color #000000;
+@define-color insensitive_bg_color #080808;
+@define-color insensitive_fg_color #666666;
+@define-color borders #444444;
+
+window,
+headerbar,
+popover,
+menu,
+dialog,
+button,
+entry,
+notebook,
+frame,
+scrolledwindow,
+treeview,
+list,
+row {
+  border-radius: 0px;
+}
+
+window,
+.background {
+  background-color: #000000;
+  color: #e6e6e6;
+}
+
+headerbar,
+menubar,
+toolbar {
+  background-color: #080808;
+  color: #e6e6e6;
+  border-bottom: 1px solid #444444;
+  box-shadow: none;
+}
+
+popover,
+menu {
+  background-color: #080808;
+  color: #e6e6e6;
+  border: 1px solid #666666;
+  box-shadow: none;
+}

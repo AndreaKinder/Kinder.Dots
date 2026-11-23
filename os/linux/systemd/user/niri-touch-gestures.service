@@ -1,0 +1,14 @@
+[Unit]
+Description=Touchscreen multi-finger gestures for Niri (matches touchpad gestures)
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 %h/.dotfiles/bin/niri-touch-gestures
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target

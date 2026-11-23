@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="eggGrad" cx="46%" cy="42%" r="58%">
+      <stop offset="0%" stop-color="#fff7fc"/>
+      <stop offset="55%" stop-color="#f7cde9"/>
+      <stop offset="100%" stop-color="#da8ec6"/>
+    </radialGradient>
+    <clipPath id="eggClip">
+      <path d="M32 5 C20 5 12 22 12 37 C12 51 20.5 59 32 59 C43.5 59 52 51 52 37 C52 22 44 5 32 5 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Outer dark plum + magenta rim -->
+  <path d="M32 5 C20 5 12 22 12 37 C12 51 20.5 59 32 59 C43.5 59 52 51 52 37 C52 22 44 5 32 5 Z"
+        fill="url(#eggGrad)" stroke="#ed43a2" stroke-width="2.6"/>
+
+  <!-- Wireframe grid clipped to egg -->
+  <g clip-path="url(#eggClip)" fill="none" stroke="#cf69b4" stroke-width="1.4" opacity="0.8">
+    <!-- Vertical meridians -->
+    <line x1="32" y1="5" x2="32" y2="59"/>
+    <path d="M32 5 C23 15 21 47 32 59"/>
+    <path d="M32 5 C41 15 43 47 32 59"/>
+    <path d="M32 5 C16 17 14 46 32 59"/>
+    <path d="M32 5 C48 17 50 46 32 59"/>
+    <!-- Horizontal parallels -->
+    <path d="M12 16 Q32 20 52 16"/>
+    <path d="M11 26 Q32 30 53 26"/>
+    <path d="M11 36 Q32 40 53 36"/>
+    <path d="M12 46 Q32 50 52 46"/>
+    <path d="M16 53 Q32 56 48 53"/>
+  </g>
+
+  <!-- Crisp inner dark outline -->
+  <path d="M32 5 C20 5 12 22 12 37 C12 51 20.5 59 32 59 C43.5 59 52 51 52 37 C52 22 44 5 32 5 Z"
+        fill="none" stroke="#361040" stroke-width="1.2"/>
+
+  <!-- Chunky K: 3D hot-pink shadow -->
+  <path d="M21.5 21 H28 V30 L35.5 21 H42.5 L34 32 L43 44 H35.5 L28 34 V44 H21.5 Z"
+        transform="translate(1.8, 2)" fill="#e82892" stroke="#e82892" stroke-width="2.4" stroke-linejoin="miter"/>
+
+  <!-- Chunky K: hot-pink outline -->
+  <path d="M21.5 21 H28 V30 L35.5 21 H42.5 L34 32 L43 44 H35.5 L28 34 V44 H21.5 Z"
+        fill="#e82892" stroke="#e82892" stroke-width="2.6" stroke-linejoin="miter"/>
+
+  <!-- Chunky K: bright white fill -->
+  <path d="M21.5 21 H28 V30 L35.5 21 H42.5 L34 32 L43 44 H35.5 L28 34 V44 H21.5 Z"
+        fill="#ffffff"/>
+</svg>

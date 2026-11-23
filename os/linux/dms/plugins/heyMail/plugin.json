@@ -1,0 +1,15 @@
+{
+    "id": "heyMail",
+    "name": "HEY Mail",
+    "description": "View and manage HEY emails directly from the top bar using the hey CLI",
+    "version": "1.0.0",
+    "author": "Andrea",
+    "icon": "mail",
+    "type": "widget",
+    "capabilities": ["dankbar-widget", "email"],
+    "component": "./HeyMail.qml",
+    "settings": "./HeyMailSettings.qml",
+    "requires_dms": ">=1.4.0",
+    "requires": ["hey"],
+    "permissions": ["settings_read", "settings_write", "process"]
+}

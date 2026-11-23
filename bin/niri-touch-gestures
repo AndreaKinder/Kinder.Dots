@@ -1,0 +1,238 @@
+#!/usr/bin/env python3
+"""
+Touchscreen multi-finger gesture daemon for Niri.
+Replicates Niri's touchpad gestures on the touchscreen:
+  - 3-finger horizontal swipe: focus-column-left / focus-column-right (continuous)
+  - 3-finger vertical swipe:   focus-workspace-up / focus-workspace-down
+  - 4-finger vertical swipe or pinch: open-overview / close-overview
+"""
+
+import glob
+import math
+import os
+import struct
+import subprocess
+import sys
+import time
+
+# Linux input_event on 64-bit: struct timeval (16B) + type (2B) + code (2B) + value (4B) = 24 bytes
+EVENT_FMT = "llHHi"
+EVENT_SIZE = struct.calcsize(EVENT_FMT)
+
+EV_SYN = 0x00
+EV_ABS = 0x03
+SYN_REPORT = 0x00
+
+ABS_MT_SLOT = 0x2F
+ABS_MT_POSITION_X = 0x35
+ABS_MT_POSITION_Y = 0x36
+ABS_MT_TRACKING_ID = 0x39
+
+DEVICE_BY_ID = "/dev/input/by-id/usb-Raydium_Corporation_Raydium_Touch_System-event-if00"
+
+# Thresholds in raw touchscreen coordinates (Raydium 2386:310e is 1920x1080)
+THRESHOLD_3_X = 110
+STEP_3_X = 170
+THRESHOLD_3_Y = 95
+STEP_3_Y = 150
+THRESHOLD_4_Y = 90
+THRESHOLD_4_PINCH = 90
+SETTLE_SEC = 0.045  # Wait briefly for additional fingers landing together
+
+
+def find_touchscreen_device() -> str | None:
+    if os.path.exists(DEVICE_BY_ID):
+        return DEVICE_BY_ID
+    for path in sorted(glob.glob("/sys/class/input/event*")):
+        name_file = os.path.join(path, "device", "name")
+        try:
+            with open(name_file, "r", encoding="utf-8", errors="ignore") as f:
+                name = f.read().strip().lower()
+            if "raydium" in name or "touchscreen" in name:
+                dev = "/dev/input/" + os.path.basename(path)
+                if os.path.exists(dev):
+                    return dev
+        except OSError:
+            continue
+    return None
+
+
+def find_niri_socket() -> str | None:
+    sock = os.environ.get("NIRI_SOCKET")
+    if sock and os.path.exists(sock):
+        return sock
+    uid = os.getuid()
+    candidates = sorted(
+        glob.glob(f"/run/user/{uid}/niri.*.sock"),
+        key=lambda p: os.path.getmtime(p),
+        reverse=True,
+    )
+    return candidates[0] if candidates else None
+
+
+def niri_action(action: str) -> None:
+    env = os.environ.copy()
+    sock = find_niri_socket()
+    if sock:
+        env["NIRI_SOCKET"] = sock
+    try:
+        subprocess.Popen(
+            ["niri", "msg", "action", action],
+            env=env,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+    except OSError as exc:
+        print(f"niri-touch-gestures: failed to run {action}: {exc}", file=sys.stderr, flush=True)
+
+
+def centroid_and_spread(points: list[tuple[int, int]]) -> tuple[float, float, float]:
+    n = len(points)
+    cx = sum(p[0] for p in points) / n
+    cy = sum(p[1] for p in points) / n
+    spread = sum(math.hypot(p[0] - cx, p[1] - cy) for p in points) / n
+    return cx, cy, spread
+
+
+def run_loop(dev_path: str) -> None:
+    fd = os.open(dev_path, os.O_RDONLY)
+    print(f"niri-touch-gestures: listening on {dev_path}", flush=True)
+
+    current_slot = 0
+    # Persist last known coordinates per slot (kernel MT Type B omits unchanged coords)
+    slot_pos: dict[int, list[int | None]] = {}
+    active_slots: set[int] = set()
+
+    max_fingers = 0
+    origin_x = 0.0
+    origin_y = 0.0
+    origin_spread = 0.0
+    gesture_ready_at = 0.0
+    locked_axis: str | None = None
+    triggered_3 = False
+    triggered_4 = False
+
+    try:
+        while True:
+            buf = os.read(fd, EVENT_SIZE * 64)
+            if not buf:
+                break
+
+            offset = 0
+            length = len(buf)
+            while offset + EVENT_SIZE <= length:
+                sec, usec, ev_type, code, value = struct.unpack_from(EVENT_FMT, buf, offset)
+                offset += EVENT_SIZE
+
+                if ev_type == EV_ABS:
+                    if code == ABS_MT_SLOT:
+                        current_slot = value
+                    elif code == ABS_MT_TRACKING_ID:
+                        if value == -1:
+                            active_slots.discard(current_slot)
+                        else:
+                            active_slots.add(current_slot)
+                            slot_pos.setdefault(current_slot, [None, None])
+                    elif code == ABS_MT_POSITION_X:
+                        slot_pos.setdefault(current_slot, [None, None])[0] = value
+                    elif code == ABS_MT_POSITION_Y:
+                        slot_pos.setdefault(current_slot, [None, None])[1] = value
+
+                elif ev_type == EV_SYN and code == SYN_REPORT:
+                    now = sec + usec / 1_000_000.0
+                    valid_points = [
+                        (slot_pos[s][0], slot_pos[s][1])
+                        for s in active_slots
+                        if s in slot_pos and slot_pos[s][0] is not None and slot_pos[s][1] is not None
+                    ]
+                    count = len(valid_points)
+
+                    if not active_slots:
+                        max_fingers = 0
+                        locked_axis = None
+                        triggered_3 = False
+                        triggered_4 = False
+                        continue
+
+                    if count > max_fingers:
+                        max_fingers = count
+                        # Whenever finger count rises to 3 or 4, re-anchor origin and settle briefly
+                        if count in (3, 4):
+                            origin_x, origin_y, origin_spread = centroid_and_spread(valid_points)
+                            gesture_ready_at = now + SETTLE_SEC
+                            locked_axis = None
+                            if count == 4:
+                                triggered_4 = False
+
+                    if now < gesture_ready_at:
+                        continue
+
+                    # 4-finger gestures: Overview (vertical swipe or pinch)
+                    if count == 4 and max_fingers == 4 and not triggered_4:
+                        cx, cy, spread = centroid_and_spread(valid_points)
+                        dx = cx - origin_x
+                        dy = cy - origin_y
+                        d_spread = spread - origin_spread
+
+                        if abs(dy) >= THRESHOLD_4_Y and abs(dy) > abs(dx) * 1.2:
+                            niri_action("open-overview" if dy < 0 else "close-overview")
+                            triggered_4 = True
+                        elif abs(d_spread) >= THRESHOLD_4_PINCH:
+                            niri_action("open-overview" if d_spread < 0 else "close-overview")
+                            triggered_4 = True
+
+                    # 3-finger gestures: columns (horizontal) and workspaces (vertical)
+                    elif count == 3 and max_fingers == 3:
+                        cx, cy, _ = centroid_and_spread(valid_points)
+                        dx = cx - origin_x
+                        dy = cy - origin_y
+
+                        if locked_axis is None:
+                            if abs(dx) >= THRESHOLD_3_X and abs(dx) >= abs(dy) * 1.15:
+                                locked_axis = "x"
+                            elif abs(dy) >= THRESHOLD_3_Y and abs(dy) > abs(dx) * 1.15:
+                                locked_axis = "y"
+
+                        if locked_axis == "x":
+                            step = STEP_3_X if triggered_3 else THRESHOLD_3_X
+                            if dx <= -step:
+                                niri_action("focus-column-right")
+                                origin_x = cx
+                                triggered_3 = True
+                            elif dx >= step:
+                                niri_action("focus-column-left")
+                                origin_x = cx
+                                triggered_3 = True
+
+                        elif locked_axis == "y":
+                            step = STEP_3_Y if triggered_3 else THRESHOLD_3_Y
+                            if dy <= -step:
+                                niri_action("focus-workspace-down")
+                                origin_y = cy
+                                triggered_3 = True
+                            elif dy >= step:
+                                niri_action("focus-workspace-up")
+                                origin_y = cy
+                                triggered_3 = True
+    finally:
+        os.close(fd)
+
+
+def main() -> None:
+    while True:
+        dev = find_touchscreen_device()
+        if not dev:
+            time.sleep(2.0)
+            continue
+        try:
+            run_loop(dev)
+        except PermissionError as exc:
+            print(f"niri-touch-gestures: permission denied on {dev}: {exc}", file=sys.stderr, flush=True)
+            time.sleep(3.0)
+        except OSError as exc:
+            print(f"niri-touch-gestures: device lost ({exc}), reconnecting...", file=sys.stderr, flush=True)
+            time.sleep(1.5)
+
+
+if __name__ == "__main__":
+    main()

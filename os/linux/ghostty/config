@@ -1,0 +1,44 @@
+# Sin bordes ni barra de título de ventana
+window-decoration = none
+gtk-titlebar = false
+
+command = /usr/bin/zsh
+
+# Estética TUI (tuigreet)
+font-family = MesloLGL Nerd Font Mono
+font-size = 10
+background = #000000
+background-opacity = 0.85
+foreground = #e6e6e6
+cursor-color = #ffffff
+cursor-text = #000000
+selection-background = #e6e6e6
+selection-foreground = #000000
+window-padding-x = 8
+window-padding-y = 8
+
+# Paleta ANSI clásica minimalista
+palette = 0=#000000
+palette = 1=#e06c75
+palette = 2=#98c379
+palette = 3=#e5c07b
+palette = 4=#d946ef
+palette = 5=#c678dd
+palette = 6=#56b6c2
+palette = 7=#d0d0d0
+palette = 8=#555555
+palette = 9=#ff7a85
+palette = 10=#b5e890
+palette = 11=#f5d08a
+palette = 12=#f0abfc
+palette = 13=#dda0f0
+palette = 14=#76d6e2
+palette = 15=#ffffff
+
+# Atajos de portapapeles (Mod+C / Mod+X / Mod+V y Ctrl+Shift+C / Ctrl+Shift+V)
+keybind = super+c=copy_to_clipboard
+keybind = super+x=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard
+keybind = shift+insert=paste_from_clipboard

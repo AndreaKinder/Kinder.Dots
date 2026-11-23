@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source "$DOTLY_PATH/scripts/core/_main.sh"
+
+##? Dump all explicitly installed Arch/CachyOS (Pacman & AUR) and Cargo packages into dotfiles
+##?
+##? Usage:
+##?    arch_dump
+docs::parse "$@"
+
+output::header "Dumping Arch/CachyOS & Cargo Packages"
+
+mkdir -p "$DOTFILES_PATH/os/linux/pacman" "$DOTFILES_PATH/langs/rust"
+
+if platform::command_exists pacman; then
+	pacman -Qqen >"$DOTFILES_PATH/os/linux/pacman/packages.txt"
+	pacman_count=$(wc -l <"$DOTFILES_PATH/os/linux/pacman/packages.txt")
+	output::answer "Pacman native packages ($pacman_count) dumped to \`os/linux/pacman/packages.txt\`"
+
+	pacman -Qqem >"$DOTFILES_PATH/os/linux/pacman/aur-packages.txt" || true
+	aur_count=$(wc -l <"$DOTFILES_PATH/os/linux/pacman/aur-packages.txt")
+	output::answer "AUR foreign packages ($aur_count) dumped to \`os/linux/pacman/aur-packages.txt\`"
+fi
+
+cargo_bin=""
+if platform::command_exists cargo; then
+	cargo_bin="cargo"
+elif [ -x "$HOME/.cargo/bin/cargo" ]; then
+	cargo_bin="$HOME/.cargo/bin/cargo"
+fi
+
+if [ -n "$cargo_bin" ]; then
+	"$cargo_bin" install --list | awk '/^[a-zA-Z0-9_-]+ v[0-9]/ {print $1}' >"$DOTFILES_PATH/langs/rust/cargo-packages.txt"
+	cargo_count=$(wc -l <"$DOTFILES_PATH/langs/rust/cargo-packages.txt")
+	output::answer "Cargo packages ($cargo_count) dumped to \`langs/rust/cargo-packages.txt\`"
+fi
+
+log::success "System package dump completed!"

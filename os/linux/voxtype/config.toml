@@ -1,0 +1,23 @@
+# Voxtype Configuration
+# Location: ~/.config/voxtype/config.toml
+
+engine = "parakeet"
+state_file = "auto"
+
+[hotkey]
+enabled = false
+key = "SCROLLLOCK"
+modifiers = []
+
+[audio]
+device = "default"
+sample_rate = 16000
+max_duration_secs = 60
+
+[parakeet]
+model = "parakeet-ultra-Q8_0.gguf"
+gguf_backend = "vulkan"
+
+[output]
+mode = "type"
+fallback_to_clipboard = true
