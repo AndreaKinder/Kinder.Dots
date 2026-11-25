@@ -3,6 +3,9 @@
     "hey": {
       "command": "hey",
       "args": ["mcp"]
+    },
+    "cloudflare": {
+      "url": "https://mcp.cloudflare.com/mcp"
     }
   }
 }
